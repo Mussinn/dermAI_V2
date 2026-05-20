@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 logger = logging.getLogger(__name__)
 
 # ПУТИ К МОДЕЛЯМ — не менять
-SKIN_MODEL_PATH  = "skin_data/skin_models/skin_model_final.pkl"
+SKIN_MODEL_PATH  = "skin_models_hq/skin_models_hq/skin_model_hq.pkl"
 LUNGS_MODEL_PATH = "chest_models_hq/chest_models_hq/chest_model_hq.pkl"
 
 skin_learn    = None

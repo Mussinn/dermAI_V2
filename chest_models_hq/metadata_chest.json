@@ -1,32 +1,38 @@
 {
   "model_name": "Lung Disease Detector",
   "model_type": "lungs",
-  "architecture": "ResNet34 + FocalLoss",
+  "architecture": "ResNet34 + FocalLoss (imbalance-corrected)",
   "classes": [
     "normal",
     "pneumonia"
   ],
   "positive_class": "pneumonia",
   "img_size": 224,
-  "training_date": "2026-05-20T07:48:41.510949",
+  "training_date": "2026-05-20T20:52:13.912124",
+  "imbalance_fixes": [
+    "WeightedRandomSampler",
+    "Inverse-frequency class weights",
+    "FocalLoss gamma=2.5",
+    "Youden-J threshold optimization"
+  ],
   "performance_metrics": {
     "overall": {
-      "accuracy": 0.9434,
-      "balanced_accuracy": 0.9634,
-      "precision": 1.0,
-      "recall": 0.9268,
-      "specificity": 1.0,
-      "npv": 0.8,
-      "f1_score": 0.962,
-      "auc_roc": 0.9957,
-      "avg_precision": 0.9987,
-      "optimal_threshold": 0.6515
+      "accuracy": 0.956,
+      "balanced_accuracy": 0.9421,
+      "precision": 0.9754,
+      "recall": 0.9675,
+      "specificity": 0.9167,
+      "npv": 0.8919,
+      "f1_score": 0.9714,
+      "auc_roc": 0.9831,
+      "avg_precision": 0.9949,
+      "optimal_threshold": 0.5518
     },
     "confusion_matrix": {
-      "tn": 36,
-      "fp": 0,
-      "fn": 9,
-      "tp": 114
+      "tn": 33,
+      "fp": 3,
+      "fn": 4,
+      "tp": 119
     }
   },
   "model_path": "chest_models_hq\\chest_model_hq.pkl"

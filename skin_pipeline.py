@@ -440,6 +440,59 @@ class FocalLoss(nn.Module):
         return (((1-torch.exp(-ce))**self.gamma)*ce).mean()
 
 
+def _preprocess_images(data_dir, max_side=512):
+    """
+    Сжимает изображения больше max_side до max_side пикселей (на диске, один раз).
+    Это решает PIL DecompressionBombError для ISIC изображений высокого разрешения.
+    Флаг .preprocessed предотвращает повторную обработку.
+    """
+    from PIL import Image as _PIL
+    _PIL.MAX_IMAGE_PIXELS = None  # разрешаем открывать большие файлы
+
+    flag = os.path.join(data_dir, ".preprocessed")
+    if os.path.exists(flag):
+        log("Images already preprocessed — skipping", "OK")
+        return
+
+    exts = {'.jpg','.jpeg','.png','.bmp','.tif','.tiff'}
+    total, resized, errors = 0, 0, 0
+
+    log(f"Preprocessing images (resize to {max_side}px if larger)...", "INFO")
+
+    for cls in CFG["CLASSES"]:
+        cls_dir = os.path.join(data_dir, cls)
+        if not os.path.exists(cls_dir):
+            continue
+        files = [f for f in Path(cls_dir).iterdir() if f.suffix.lower() in exts]
+        for fpath in files:
+            total += 1
+            try:
+                img = _PIL.open(fpath)
+                w, h = img.size
+                if max(w, h) > max_side:
+                    # Сохраняем пропорции
+                    ratio = max_side / max(w, h)
+                    new_w, new_h = int(w * ratio), int(h * ratio)
+                    img = img.convert("RGB").resize((new_w, new_h), _PIL.LANCZOS)
+                    img.save(fpath, "JPEG", quality=92)
+                    resized += 1
+                elif img.mode != "RGB":
+                    img.convert("RGB").save(fpath, "JPEG", quality=92)
+                    resized += 1
+            except Exception as e:
+                log(f"  Cannot process {fpath.name}: {e}", "WARN")
+                errors += 1
+            if total % 200 == 0:
+                log(f"  Processed {total} images ({resized} resized)...", "INFO")
+
+    log(f"Preprocessing done: {total} total, {resized} resized, {errors} errors", "OK")
+
+    # Ставим флаг чтобы не обрабатывать повторно
+    with open(flag, "w") as f:
+        json.dump({"total": total, "resized": resized,
+                   "max_side": max_side, "date": datetime.now().isoformat()}, f)
+
+
 def _compute_class_weights():
     counts = {cls: max(count_images(os.path.join(CFG["DATA_DIR"],cls)),1)
               for cls in CFG["CLASSES"]}
@@ -470,7 +523,14 @@ def run_train():
     banner("STEP 2 — TRAINING SKIN CLASSIFIER", "─")
     set_seed(CFG["SEED"]); gpu_info()
 
-    # ── Проверка данных ───────────────────────
+    # ── Снимаем лимит PIL (ISIC изображения бывают очень большими) ─
+    from PIL import Image as _PILImage
+    _PILImage.MAX_IMAGE_PIXELS = None   # убираем DecompressionBombError
+
+    # ── Предварительное сжатие изображений (resize до 512px) ─────
+    _preprocess_images(CFG["DATA_DIR"])
+
+    # ── Проверка данных ───────────────────────────────────────────
     for cls in CFG["CLASSES"]:
         n = count_images(os.path.join(CFG["DATA_DIR"], cls))
         log(f"  {cls}: {n} images", "INFO")

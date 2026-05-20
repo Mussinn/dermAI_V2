@@ -1,0 +1,31 @@
+{
+  "model_name": "Skin Cancer Detector",
+  "model_type": "skin",
+  "architecture": "ResNet34 + GeM + FocalLoss",
+  "classes": [
+    "melanoma",
+    "normal"
+  ],
+  "positive_class": "melanoma",
+  "img_size": 224,
+  "training_date": "2026-05-20T17:18:00.111292",
+  "performance_metrics": {
+    "overall": {
+      "accuracy": 0.5022,
+      "balanced_accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "auc_roc": 0.0229,
+      "avg_precision": 0.3076,
+      "optimal_threshold": Infinity
+    },
+    "confusion_matrix": {
+      "tn": 226,
+      "fp": 0,
+      "fn": 224,
+      "tp": 0
+    }
+  },
+  "model_path": "skin_models_hq\\skin_model_hq.pkl"
+}

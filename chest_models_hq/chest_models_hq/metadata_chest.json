@@ -1,0 +1,30 @@
+{
+  "model_name": "Lung Disease Detector",
+  "model_type": "lungs",
+  "architecture": "resnet18",
+  "classes": {
+    "normal": {
+      "name": "Normal",
+      "description": "Healthy lungs - no signs of pneumonia detected",
+      "risk": "low"
+    },
+    "pneumonia": {
+      "name": "Pneumonia",
+      "description": "Pneumonia detected - inflammation of the lungs",
+      "risk": "high"
+    }
+  },
+  "class_list": [
+    "normal",
+    "pneumonia"
+  ],
+  "performance_metrics": {
+    "overall": {
+      "accuracy": 0.95,
+      "precision": 0.95,
+      "recall": 0.95,
+      "f1_score": 0.95
+    }
+  },
+  "training_date": "2026-05-20T15:15:56.022168"
+}

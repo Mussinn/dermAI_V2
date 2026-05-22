@@ -8,7 +8,7 @@
   ],
   "positive_class": "pneumonia",
   "img_size": 224,
-  "training_date": "2026-05-20T20:52:13.912124",
+  "training_date": "2026-05-21T04:23:51.153472",
   "imbalance_fixes": [
     "WeightedRandomSampler",
     "Inverse-frequency class weights",
@@ -17,22 +17,22 @@
   ],
   "performance_metrics": {
     "overall": {
-      "accuracy": 0.956,
-      "balanced_accuracy": 0.9421,
-      "precision": 0.9754,
-      "recall": 0.9675,
-      "specificity": 0.9167,
-      "npv": 0.8919,
-      "f1_score": 0.9714,
-      "auc_roc": 0.9831,
-      "avg_precision": 0.9949,
-      "optimal_threshold": 0.5518
+      "accuracy": 0.9304,
+      "balanced_accuracy": 0.9371,
+      "precision": 0.9818,
+      "recall": 0.9231,
+      "specificity": 0.9512,
+      "npv": 0.8125,
+      "f1_score": 0.9515,
+      "auc_roc": 0.9779,
+      "avg_precision": 0.9931,
+      "optimal_threshold": 0.6922
     },
     "confusion_matrix": {
-      "tn": 33,
-      "fp": 3,
-      "fn": 4,
-      "tp": 119
+      "tn": 39,
+      "fp": 2,
+      "fn": 9,
+      "tp": 108
     }
   },
   "model_path": "chest_models_hq\\chest_model_hq.pkl"

@@ -8,7 +8,7 @@
   ],
   "positive_class": "melanoma",
   "img_size": 224,
-  "training_date": "2026-05-20T17:18:00.111292",
+  "training_date": "2026-05-21T12:50:54.044735",
   "performance_metrics": {
     "overall": {
       "accuracy": 0.5022,
@@ -16,8 +16,8 @@
       "precision": 0.0,
       "recall": 0.0,
       "f1_score": 0.0,
-      "auc_roc": 0.0229,
-      "avg_precision": 0.3076,
+      "auc_roc": 0.0354,
+      "avg_precision": 0.3087,
       "optimal_threshold": Infinity
     },
     "confusion_matrix": {

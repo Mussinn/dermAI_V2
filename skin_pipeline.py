@@ -50,7 +50,7 @@ import torch.nn.functional as F
 #  КОНФИГУРАЦИЯ
 # ─────────────────────────────────────────────
 CFG = {
-    "DATA_DIR":          "skin_data",
+    "DATA_DIR":          "skin_data_processed",
     "MODELS_DIR":        "skin_models_hq",
     "EXPORT_NAME":       "skin_model_hq.pkl",
     "META_NAME":         "metadata_skin.json",

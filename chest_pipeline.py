@@ -38,6 +38,7 @@ import torch.nn.functional as F
 # ─────────────────────────────────────────────
 CFG = {
     "DATA_DIR":          "chest_data",
+    # "DATA_DIR":          "chest_data_processed",
     "MODELS_DIR":        "chest_models_hq",
     "EXPORT_NAME":       "chest_model_hq.pkl",
     "META_NAME":         "metadata_chest.json",

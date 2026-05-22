@@ -4,3 +4,5 @@
 /.skin_cache
 /uploads
 /__pycache__
+/chest_data_processed
+/skin_data_processed

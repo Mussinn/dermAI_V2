@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 # ПУТИ К МОДЕЛЯМ — не менять
 SKIN_MODEL_PATH  = "skin_models_hq/skin_models_hq/skin_model_hq.pkl"
-LUNGS_MODEL_PATH = "chest_models_hq/chest_models_hq/chest_model_hq.pkl"
+LUNGS_MODEL_PATH = "chest_models_hq/chest_models_hq/chest_model_hq_best.pkl"
 
 skin_learn    = None
 lungs_learn   = None

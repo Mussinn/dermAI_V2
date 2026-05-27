@@ -1,4 +1,6 @@
 """
+dis zhubanov.univ
+
 skin_pipeline.py — ИСПРАВЛЕННАЯ ВЕРСИЯ v4
 ═══════════════════════════════════════════════════════════════════════════
 Классы: melanoma / normal
@@ -37,7 +39,7 @@ import torch.nn.functional as F
 #  КОНФИГУРАЦИЯ
 # ─────────────────────────────────────────────
 CFG = {
-    "DATA_DIR":          "skin_data_processed",
+    "DATA_DIR":          "skin_data",
     "MODELS_DIR":        "skin_models_hq",
     "EXPORT_NAME":       "skin_model_hq.pkl",
     "META_NAME":         "metadata_skin.json",

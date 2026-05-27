@@ -29,6 +29,9 @@ skin_preprocess.py — Предобработка дерматоскопичес
 
 Требования:
     pip install opencv-python-headless numpy Pillow tqdm
+
+
+    иди можно если есть reqwquest библеотеками скачать 
 """
 
 import cv2
